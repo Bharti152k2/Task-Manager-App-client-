@@ -1,0 +1,49 @@
+.home {
+  height: 625px;
+  display: flex;
+  flex-direction: row;
+}
+.img {
+  background-image: url("../assets/task.png");
+  /* background-image: linear-gradient(blue, lightblue); */
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 40%;
+}
+.background {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.background h1 {
+  color: rgb(18, 110, 140);
+  font-size: 45px;
+  margin-bottom: 4%;
+
+}
+.background div p {
+  color: rgba(0, 0, 0, 0.55);
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.background button {
+  background: transparent;
+  border: none;
+  outline: none;
+  display: flex;
+  margin-left: -100px;
+  width: 30%;
+  margin-top: 5%;
+}
+
+button a {
+  text-decoration: none;
+  font-size: 21px;
+  color: darkblue;
+  margin-right: 8px;
+}

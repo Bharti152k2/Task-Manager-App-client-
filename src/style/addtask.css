@@ -1,0 +1,64 @@
+.task-div {
+  width: 80%;
+  margin: 30px auto;
+  padding: 20px;
+  box-shadow: 1px 1px 10px 1px gray;
+  border-radius: 15px;
+}
+.task-div h1 {
+  color: darkblue;
+  text-align: center;
+  font-size: 30px;
+}
+.task-form {
+  display: flex;
+}
+.row1,
+.row2 {
+  display: flex;
+  justify-content: space-between;
+}
+.row1 input,
+textarea {
+  border: 1px solid lightblue;
+  border-radius: 8px;
+  height: 35px;
+  padding-left: 15px;
+  font-size: 16px;
+  width: 240px;
+}
+textarea {
+  padding-top: 8px;
+}
+input:focus,
+input:focus,
+textarea:focus,
+.select .css-13cymwt-control {
+  outline: 2px solid #1a73e8;
+  box-shadow: 0px 0px 2px 1px #1a73e8;
+  border: none;
+}
+.btn {
+  background-color: green;
+  width: 20%;
+  margin-left: 70%;
+}
+.popup {
+  background-color: rgb(180, 250, 237);
+  text-align: center;
+  font-size: 20px;
+  padding: 17px;
+  color: darkgreen;
+  width: 450px;
+  margin: 20px auto;
+}
+.select span {
+  display: none;
+}
+.select input {
+  visibility: hidden;
+}
+.select .css-13cymwt-control {
+  border-radius: 10px;
+  width: 240px;
+}

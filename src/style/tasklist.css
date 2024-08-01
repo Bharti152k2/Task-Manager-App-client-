@@ -1,0 +1,49 @@
+.task-data {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.task-data input {
+  margin: 30px auto;
+  width: 300px;
+}
+table {
+  border: 2px solid black;
+  width: 100%;
+  border-collapse: collapse;
+}
+table thead tr th {
+  border: 2px solid darkblue;
+  font-size: 24px;
+  background-color: rgb(202, 242, 255);
+  padding: 10px;
+  letter-spacing: 1px;
+  color: rgba(0, 0, 255, 0.658);
+}
+table tbody tr td {
+  border: 2px solid darkblue;
+  text-align: center;
+  padding: 8px;
+  font-size: 20px;
+}
+table tbody tr:hover {
+  background-color: rgb(145, 227, 255);
+}
+button {
+  border: none;
+  outline: none;
+  color: white;
+  padding: 4px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+.dltbtn {
+  background-color: red;
+  width: 50%;
+  margin-left: -10%;
+}
+.edtbtn {
+  background-color: rgba(3, 3, 217, 0.815);
+  width: 70%;
+  margin-left: -10%;
+}

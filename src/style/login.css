@@ -1,0 +1,27 @@
+.formdiv {
+  margin: 100px auto;
+  width: 420px;
+}
+.formdiv h1 {
+  color: brown;
+  text-align: center;
+}
+.formdiv a {
+  margin-left: 70px;
+}
+.loginbtn {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: green;
+  color: white;
+  padding: 8px;
+  width: 110px;
+  font-size: 17px;
+  margin: 2px auto;
+  transition: all 1s ease-in-out;
+  letter-spacing: 1px;
+}
+.loginbtn:hover {
+  background-color: rgb(4, 103, 4);
+}
