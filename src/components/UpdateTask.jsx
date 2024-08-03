@@ -14,7 +14,12 @@ let options = [
   { value: "medium", label: "Medium" },
   { value: "low", label: "Low" },
 ];
-
+let statusOptions = [
+  { value: "pending", label: "Pending" },
+  { value: "completed", label: "Completed" },
+  { value: "in-progress", label: "In Progress" },
+  { value: "on-hold", label: "On Hold" },
+];
 function UpdateTask() {
   //! STATES
   let [startDate, setStartDate] = useState(new Date());
@@ -23,6 +28,7 @@ function UpdateTask() {
     priority: "",
     duedate: new Date(),
     description: "",
+    status: statusOptions[0].value,
   });
   let [formErrors, setformErrors] = useState({});
   let [successMsg, setSuccessMsg] = useState("");
@@ -40,6 +46,9 @@ function UpdateTask() {
     setTaskData({ ...taskData, priority: selectedOption.value });
   };
 
+  let getStatusOption = (selectedOption) => {
+    setTaskData({ ...taskData, status: selectedOption.value });
+  };
   //^ FOR DATE CHANGE
 
   let handleDateChange = (date) => {
@@ -67,6 +76,7 @@ function UpdateTask() {
         priority: data.priority,
         duedate: new Date(data.duedate),
         description: data.description,
+        status: data.status,
       });
       setStartDate(new Date(data.duedate));
     } catch (err) {
@@ -108,6 +118,7 @@ function UpdateTask() {
           priority: options[0].value,
           duedate: new Date(),
           description: "",
+          status: statusOptions[0].value,
         });
         setStartDate(new Date());
       } catch (err) {
@@ -117,9 +128,9 @@ function UpdateTask() {
   };
 
   return (
-    <>
+    <section className="update-task-form">
       {successMsg && <p className="popup">{successMsg}</p>}
-      <div className="updatetask-div">
+      <div className="task-div">
         <h1>Update Task</h1>
         <form className="task-form">
           <div className="divs">
@@ -157,7 +168,23 @@ function UpdateTask() {
           <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
             {formErrors.priority}
           </small>
-
+          <div className="divs">
+            <label>Status:</label>
+            <Select
+              value={
+                statusOptions.find(
+                  (option) => option.value === taskData.status
+                ) || {
+                  value: taskData.status,
+                  label: taskData.status,
+                }
+              }
+              className="select"
+              options={statusOptions}
+              onChange={getStatusOption}
+              name="status"
+            />
+          </div>
           <div className="divs">
             <label>Date:</label>
             <DatePicker
@@ -184,12 +211,12 @@ function UpdateTask() {
             {formErrors.description}
           </small>
 
-          <button type="submit" className="btn" onClick={updateTask}>
+          <button type="submit" className="add-btn" onClick={updateTask}>
             Update Task
           </button>
         </form>
       </div>
-    </>
+    </section>
   );
 }
 

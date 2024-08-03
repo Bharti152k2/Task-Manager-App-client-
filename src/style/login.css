@@ -1,12 +1,21 @@
-.formdiv {
-  margin: 100px auto;
-  width: 420px;
+.login-form {
+  background-image: linear-gradient(rgb(250, 44, 44), rgb(44, 44, 255));
+  padding: 66px;
 }
-.formdiv h1 {
-  color: brown;
+.form-div {
+  width: 33%;
+  margin: 100px auto;
+  border-radius: 15px;
+  box-shadow: 1px 1px 5px 1px rgb(26, 15, 15);
+  padding: 30px 30px;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.form-div h1 {
+  color: black;
   text-align: center;
 }
-.formdiv a {
+.form-div a {
   margin-left: 70px;
 }
 .loginbtn {

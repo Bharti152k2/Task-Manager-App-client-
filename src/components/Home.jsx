@@ -16,8 +16,9 @@ function home() {
           </div>
         </div>
         <button>
-          <NavLink to="/tasks">TO-DO</NavLink>
-          <LuListTodo style={{ fontSize: "25px", color: "darkblue" }} />
+          <NavLink to="/tasks">Todo</NavLink>
+          {/* <h1>a</h1> */}
+          <LuListTodo style={{ fontSize: "25px", color: "white" }} />
         </button>
       </section>
     </div>

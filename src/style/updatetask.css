@@ -1,20 +1,6 @@
-.updatetask-div {
-  width: 30%;
-  /* border: 2px solid red; */
-  margin: 30px auto;
-  padding: 20px;
-  box-shadow: 1px 1px 10px 1px gray;
-  border-radius: 15px;
-}
-.divs {
-  /* border: 2px solid green; */
-  padding: 10px;
+
+.update-task-form {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 2px 2px 20px 2px lightblue;
-}
-.btn{
-    width: 40%;
-    margin: 10px auto;
+  background-image: linear-gradient(rgb(252, 44, 44), rgb(44, 44, 255));
+  padding: 1.4%;
 }

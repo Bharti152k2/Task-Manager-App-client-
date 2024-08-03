@@ -52,10 +52,10 @@ function Login() {
   };
   //! JSX
   return (
-    <>
+    <section className="login-form">
       {(successMsg && <p className="popup">{successMsg}</p>) ||
         (errorMsg && <p className="popuperror">{errorMsg}</p>)}
-      <div className="formdiv">
+      <div className="form-div">
         <h1>Login Form</h1>
         <form>
           {loginFields.map(({ id, type, value, placeholder, name }) => {
@@ -77,7 +77,7 @@ function Login() {
         </form>
         <a href="./signup">Don't have account? Signup</a>
       </div>
-    </>
+    </section>
   );
 }
 

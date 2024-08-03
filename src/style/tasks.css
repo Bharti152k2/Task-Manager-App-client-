@@ -1,0 +1,108 @@
+.task-data {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  height: 650px;
+  background-image: linear-gradient(rgb(255, 44, 44), rgb(44, 44, 255));
+}
+.task-nav {
+  margin: 20px 0px;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 20px;
+  padding: 0px 55px;
+}
+.task-nav h1 {
+  font-size: 30px;
+}
+.task-data input {
+  width: 33%;
+  height: 100%;
+  margin: 0px 130px 0px 280px;
+}
+.task-nav .nav-btn {
+  padding: 0.5%;
+  font-size: 150%;
+  background-color: rgba(255, 255, 255, 0.546);
+}
+.task-nav .nav-btn:hover {
+  background-color: rgb(120, 248, 120);
+}
+.task-nav a {
+  display: flex;
+}
+table {
+  border-spacing: 0 10px;
+  margin: 1% auto;
+  width: 95%;
+  border-collapse: separate;
+}
+thead tr {
+  border: 2px solid black;
+  background-color: rgba(255, 255, 255, 0.3);
+  margin: 20px;
+}
+
+tbody tr {
+  border: 2px solid black;
+  background-color: rgba(145, 228, 255, 0.2);
+}
+table thead tr th {
+  font-size: 24px;
+  padding: 10px;
+  letter-spacing: 1px;
+  color: rgba(0, 0, 255, 0.658);
+}
+table tbody tr td {
+  text-align: center;
+  padding: 8px;
+  font-size: 20px;
+}
+table tbody tr:hover {
+  background-color: rgba(145, 228, 255, 0.329);
+}
+button {
+  border: none;
+  outline: none;
+  color: white;
+  padding: 6px;
+  font-size: 20px;
+  border-radius: 5px;
+}
+.dltbtn {
+  background-color: red;
+  width: 40%;
+  margin-left: -10%;
+}
+.edtbtn {
+  background-color: rgba(3, 3, 217, 0.815);
+  width: 50%;
+  margin-left: -10%;
+}
+.task-completed {
+  background-color: rgb(212, 237, 218);
+  color: rgb(21, 87, 36);
+  padding: 5px 0px;
+  width: 70%;
+  margin: 3px auto;
+  border-radius: 20px;
+}
+
+.task-to-do {
+  background-color: rgb(255, 243, 205);
+  color: rgb(133, 100, 4);
+  padding: 5px 0px;
+  width: 70%;
+  margin: 3px auto;
+  border-radius: 20px;
+}
+
+.task-in-progress {
+  background-color: rgb(209, 236, 241);
+  color: rgb(12, 84, 96);
+  padding: 5px 0px;
+  width: 70%;
+  margin: 3px auto;
+  border-radius: 20px;
+}

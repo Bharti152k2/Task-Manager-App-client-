@@ -3,6 +3,8 @@ nav {
   display: flex;
   align-items: center;
   background-color: darkblue;
+  /* background-color: rgb(18, 110, 140); */
+
   gap: 20px;
   padding-left: 300px;
 }
@@ -17,9 +19,13 @@ nav .links a {
   margin-left: 20px;
   transition: all 1s ease-in-out;
 }
-a:active,
+
 nav a:hover {
-  color: lightblue;
+  color: red;
+  text-decoration: underline;
+}
+nav .links a.active {
+  color: red;
   text-decoration: underline;
 }
 span {
@@ -31,10 +37,12 @@ span {
 span h1 {
   font-family: algerian;
   font-size: 35px;
-  color: rgba(0, 0, 0, 0.514);
+  /* color: rgba(0, 0, 0, 0.514); */
+  color: red;
 }
 span h2 {
-  color: gray;
+  /* color: gray; */
+  color: rgb(0, 191, 255);
 }
 nav button {
   outline: none;

@@ -14,8 +14,8 @@ function Navbar() {
       </span>
       <div className="links">
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/tasks">Tasks</NavLink>
-        {<NavLink to="/register">Signup</NavLink>}
+        <NavLink to="/tasks">My Tasks</NavLink>
+        {<NavLink to="/signup">Signup</NavLink>}
         {<NavLink to="/login">Login</NavLink>}
         {/* {isLoggin && (
           <button

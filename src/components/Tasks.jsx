@@ -1,10 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
-import "../style/tasklist.css";
+import { NavLink, useNavigate } from "react-router-dom";
+import "../style/tasks.css";
+import { BiSortAlt2 } from "react-icons/bi";
+import { FaFilter } from "react-icons/fa";
+import { IoMdAdd } from "react-icons/io";
+import AddTask from "./AddTask";
 
-function TaskList() {
+function Tasks() {
   //! STATES
   let [tasks, setTasks] = useState([]);
   let [title, setTitle] = useState("");
@@ -14,15 +18,13 @@ function TaskList() {
   let getTitle = ({ target: { value } }) => {
     setTitle(value);
   };
+
   //! TO GET TASK DATA
   let getTasks = async (filterTitle = "") => {
     try {
-      let { data } = await axios.get(
-        `http://localhost:3000/api/getfilteredsortedtask`,
-        {
-          params: { title: filterTitle },
-        }
-      );
+      let { data } = await axios.get(`http://localhost:3000/api/gettask`, {
+        params: { title: filterTitle },
+      });
       setTasks(data);
     } catch (error) {
       console.log(error);
@@ -51,14 +53,43 @@ function TaskList() {
       console.log(err);
     }
   };
+  let getStatusClass = (status) => {
+    switch (status) {
+      case "completed":
+        return "task-completed";
+      case "to-do":
+        return "task-to-do";
+      case "in-progress":
+        return "task-in-progress";
+      default:
+        return "";
+    }
+  };
   return (
     <section className="task-data">
-      <input
-        type="text"
-        placeholder="Search Title"
-        value={title}
-        onChange={getTitle}
-      />
+      <div className="task-nav">
+        <h1>My Tasks</h1>
+        <input
+          type="text"
+          placeholder="Search"
+          value={title}
+          onChange={getTitle}
+        />
+        <button className="nav-btn">
+          <BiSortAlt2 />
+        </button>
+        <button className="nav-btn">
+          <FaFilter />
+        </button>
+        <NavLink
+          to="/addtask"
+          className="nav-btn"
+          style={{ backgroundColor: "green" }}
+        >
+          New
+          <IoMdAdd />
+        </NavLink>
+      </div>
       <table>
         <thead>
           <tr>
@@ -82,7 +113,9 @@ function TaskList() {
                   <td>{new Date(duedate).toLocaleDateString()}</td>
                   <td>{priority}</td>
                   <td>{description}</td>
-                  <td>{status}</td>
+                  <td>
+                    <p className={getStatusClass(status)}>{status}</p>
+                  </td>
                   <td>
                     <button
                       className="edtbtn"
@@ -113,4 +146,4 @@ function TaskList() {
     </section>
   );
 }
-export default TaskList;
+export default Tasks;

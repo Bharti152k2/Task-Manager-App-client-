@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { validateFormData } from "../helper/signupValidations.js";
 import "../style/signup.css";
-import { useSelector, useDispatch } from "react-redux";
+// import { useSelector, useDispatch } from "react-redux";
 import { addSignupUser } from "../redux/auth/authSlice.js";
 
 function SignUp() {
@@ -28,15 +28,15 @@ function SignUp() {
 
   let navigateToLogin = useNavigate();
 
-  let { user } = useSelector((state) => state.user);
+  // let { user } = useSelector((state) => state.user);
   // console.log(user);
-  let dispatch = useDispatch();
+  // let dispatch = useDispatch();
 
   //! FUNCTION TO GET INPUT DATA
 
   let getData = ({ target: { value, name } }) => {
     setsignupData({ ...signupData, [name]: value });
-    dispatch(addSignupUser(signupData));
+    // dispatch(addSignupUser(signupData));
   };
 
   //! FUNCTION TO POST DATA AFTER VALIDATING
@@ -67,7 +67,7 @@ function SignUp() {
   };
   //! JSX
   return (
-    <>
+    <section className="signup-form">
       {successMsg && <p className="popup">{successMsg}</p>}
       <div className="formdiv">
         <h2>Create a new account</h2>
@@ -124,7 +124,7 @@ function SignUp() {
         </form>
         <a href="./login">Already have a account?</a>
       </div>
-    </>
+    </section>
   );
 }
 

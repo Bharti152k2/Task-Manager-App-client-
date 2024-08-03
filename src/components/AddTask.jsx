@@ -44,7 +44,7 @@ function AddTask() {
     setTaskData({ ...taskData, date: date });
   };
 
-  //^ TO ADD EXPENSE
+  //^ TO ADD TASK
 
   let addTask = async (e) => {
     e.preventDefault();
@@ -76,13 +76,14 @@ function AddTask() {
   };
 
   return (
-    <>
+    <section className="add-task-form">
       {successMsg && <p className="popup">{successMsg}</p>}
       <div className="task-div">
         <h1>Add Your Task</h1>
 
         <form className="task-form">
-          <div className="row1">
+          <div className="divs">
+            <label htmlFor="title">Title:</label>
             <input
               type="text"
               placeholder="To-do title"
@@ -91,11 +92,12 @@ function AddTask() {
               value={taskData.title}
               onChange={getData}
             />
-
-            <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
-              {formErrors.title}
-            </small>
-
+          </div>
+          <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+            {formErrors.title}
+          </small>
+          <div className="divs">
+            <label>Priority:</label>
             <Select
               className="select"
               defaultValue={options[0]}
@@ -103,22 +105,25 @@ function AddTask() {
               onChange={getSelectOption}
               name="priority"
             />
-
-            <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
-              {formErrors.priority}
-            </small>
           </div>
-          <div className="row2">
+          <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+            {formErrors.priority}
+          </small>
+
+          <div className="divs">
+            <label>Date:</label>
             <DatePicker
               selected={startDate}
               name="date"
               onChange={getDate}
               maxDate={new Date()}
             />
-
-            <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
-              {formErrors.date}
-            </small>
+          </div>
+          <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+            {formErrors.date}
+          </small>
+          <div className="divs">
+            <label htmlFor="desc">Description:</label>
 
             <textarea
               name="description"
@@ -127,17 +132,17 @@ function AddTask() {
               value={taskData.description}
               onChange={getData}
             ></textarea>
-
-            <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
-              {formErrors.description}
-            </small>
           </div>
-          <button type="submit" className="btn" onClick={addTask}>
+          <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+            {formErrors.description}
+          </small>
+
+          <button type="submit" className="add-btn" onClick={addTask}>
             Add Task
           </button>
         </form>
       </div>
-    </>
+    </section>
   );
 }
 

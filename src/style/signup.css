@@ -1,14 +1,19 @@
+.signup-form {
+  background-image: linear-gradient(rgb(250, 44, 44), rgb(44, 44, 255));
+  padding: 80px;
+}
 .formdiv {
-  width: 45%;
+  width: 33%;
+  margin: 0px auto;
   border-radius: 15px;
-  box-shadow: 1px 1px 5px 1px gray;
+  box-shadow: 1px 1px 5px 1px rgb(26, 15, 15);
   padding: 30px 30px;
-  background-color: rgb(214, 244, 255);
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .formdiv h2 {
   text-align: center;
   font-weight: bolder;
-  color: brown;
+  color: black;
 }
 form {
   padding: 20px;
@@ -37,7 +42,7 @@ input:focus {
   padding: 8px;
   width: 110px;
   font-size: 17px;
-  margin: 2px auto;
+  margin: 0px auto;
   transition: all 1s ease-in-out;
   letter-spacing: 1px;
 }
@@ -57,7 +62,7 @@ input:focus {
 .gender label:first-child {
   font-size: 20px;
   font-weight: bold;
-  color: rgb(4, 69, 91);
+  color: rgb(0, 0, 0);
 }
 .gender input:focus {
   outline: none;
@@ -66,6 +71,7 @@ a {
   text-decoration: none;
   letter-spacing: 1px;
   margin-left: 100px;
+  color: white;
 }
 .popup,
 .popuperror {

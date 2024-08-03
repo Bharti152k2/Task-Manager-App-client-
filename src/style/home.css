@@ -2,6 +2,7 @@
   height: 625px;
   display: flex;
   flex-direction: row;
+  background-image: linear-gradient(rgb(252, 44, 44), rgb(44, 44, 255));
 }
 .img {
   background-image: url("../assets/task.png");
@@ -18,10 +19,10 @@
   align-items: center;
 }
 .background h1 {
-  color: rgb(18, 110, 140);
+  color: rgb(4, 139, 185);
+  /* color: rgb(18, 110, 140); */
   font-size: 45px;
   margin-bottom: 4%;
-
 }
 .background div p {
   color: rgba(0, 0, 0, 0.55);
@@ -30,13 +31,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 .background button {
   background: transparent;
   border: none;
   outline: none;
   display: flex;
-  margin-left: -100px;
+  justify-content: center;
+  align-items: center;
   width: 30%;
   margin-top: 5%;
 }
@@ -46,4 +49,6 @@ button a {
   font-size: 21px;
   color: darkblue;
   margin-right: 8px;
+  color: white;
+  margin-left: -4%;
 }
