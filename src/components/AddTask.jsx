@@ -5,6 +5,7 @@ import Select from "react-select";
 import axios from "axios";
 import { validateFormData } from "../helper/taskValidation";
 import "../style/addtask.css";
+import { useNavigate } from "react-router-dom";
 
 let options = [
   { value: "", label: "Set priority" },
@@ -24,6 +25,9 @@ function AddTask() {
   });
   let [formErrors, setformErrors] = useState({});
   let [successMsg, setSuccessMsg] = useState("");
+  let [errorMsg, setErrorMsg] = useState("");
+
+  let navigateToTaskList = useNavigate();
 
   //! FUNCTION TO HANDLE USER EXPENSE
 
@@ -41,7 +45,7 @@ function AddTask() {
 
   let getDate = (date) => {
     setStartDate(date);
-    setTaskData({ ...taskData, date: date });
+    setTaskData({ ...taskData, duedate: date });
   };
 
   //^ TO ADD TASK
@@ -55,7 +59,12 @@ function AddTask() {
       try {
         let { data } = await axios.post(
           `http://localhost:3000/api/addtask`,
-          taskData
+          taskData,
+          {
+            headers: {
+              Authorization: localStorage.getItem("token"),
+            },
+          }
         );
         setSuccessMsg(data.message);
         setTaskData({
@@ -67,17 +76,19 @@ function AddTask() {
         setStartDate(new Date());
         setTimeout(() => {
           setSuccessMsg("");
+          navigateToTaskList("/tasks");
         }, 3000);
         console.log(data);
       } catch (error) {
-        console.log(error);
+        setErrorMsg(error.response.data.message);
       }
     }
   };
 
   return (
     <section className="add-task-form">
-      {successMsg && <p className="popup">{successMsg}</p>}
+      {(successMsg && <p className="popup">{successMsg}</p>) ||
+        (errorMsg && <p className="popuperror">{errorMsg}</p>)}
       <div className="task-div">
         <h1>Add Your Task</h1>
 
@@ -93,7 +104,7 @@ function AddTask() {
               onChange={getData}
             />
           </div>
-          <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+          <small style={{ padding: "0px 0px 0px 5px", color: "black" }}>
             {formErrors.title}
           </small>
           <div className="divs">
@@ -106,20 +117,20 @@ function AddTask() {
               name="priority"
             />
           </div>
-          <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+          <small style={{ padding: "0px 0px 0px 5px", color: "black" }}>
             {formErrors.priority}
           </small>
 
           <div className="divs">
-            <label>Date:</label>
+            <label>Due Date:</label>
             <DatePicker
               selected={startDate}
-              name="date"
+              name="duedate"
               onChange={getDate}
-              maxDate={new Date()}
+              minDate={new Date()}
             />
           </div>
-          <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+          <small style={{ padding: "0px 0px 0px 5px", color: "black" }}>
             {formErrors.date}
           </small>
           <div className="divs">
@@ -133,7 +144,7 @@ function AddTask() {
               onChange={getData}
             ></textarea>
           </div>
-          <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+          <small style={{ padding: "0px 0px 0px 5px", color: "black" }}>
             {formErrors.description}
           </small>
 

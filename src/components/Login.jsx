@@ -37,14 +37,15 @@ function Login() {
           `http://localhost:3000/api/login`,
           loginData
         );
-        localStorage.setItem("token", data.token);
-        console.log(data.token);
+
+        let tokenExpiry = new Date().getTime() + 3600 * 1000;
+        login(data.token, tokenExpiry);
         setLoginData(data);
-        login(loginData);
         setSuccessMsg(data.message);
         setTimeout(() => {
+          setSuccessMsg("");
           navigateToHome("/tasks");
-        }, 3000);
+        }, 2000);
       } catch (error) {
         setErrorMsg(error.response.data.message);
       }

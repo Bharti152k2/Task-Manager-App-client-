@@ -15,10 +15,10 @@ let options = [
   { value: "low", label: "Low" },
 ];
 let statusOptions = [
+  { value: "", label: "Change Status" },
   { value: "pending", label: "Pending" },
   { value: "completed", label: "Completed" },
   { value: "in-progress", label: "In Progress" },
-  { value: "on-hold", label: "On Hold" },
 ];
 function UpdateTask() {
   //! STATES
@@ -60,27 +60,31 @@ function UpdateTask() {
 
   let getSingleTask = async () => {
     try {
+      console.log(id);
+      if (!id) {
+        throw new Error("No ID provided");
+      }
       let token = localStorage.getItem("token");
 
       let { data } = await axios.get(
         `http://localhost:3000/api/getonetask/${id}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `${token}`,
           },
         }
       );
-      console.log(data);
+      console.log(data.data);
       setTaskData({
-        title: data.title,
-        priority: data.priority,
-        duedate: new Date(data.duedate),
-        description: data.description,
-        status: data.status,
+        title: data.data.title,
+        priority: data.data.priority,
+        duedate: new Date(data.data.duedate),
+        description: data.data.description,
+        status: data.data.status,
       });
-      setStartDate(new Date(data.duedate));
+      setStartDate(new Date(data.data.duedate));
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -104,25 +108,18 @@ function UpdateTask() {
           taskData,
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `${token}`,
             },
           }
         );
         console.log(data);
         setSuccessMsg(data.message);
         setTimeout(() => {
+          setSuccessMsg("");
           navigateToTask("/tasks");
-        }, 1000);
-        setTaskData({
-          title: "",
-          priority: options[0].value,
-          duedate: new Date(),
-          description: "",
-          status: statusOptions[0].value,
-        });
-        setStartDate(new Date());
+        }, 2000);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     }
   };
@@ -143,7 +140,7 @@ function UpdateTask() {
               onChange={changeTask}
             />
           </div>
-          <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+          <small style={{ padding: "0px 0px 0px 5px", color: "black" }}>
             {formErrors.title}
           </small>
 
@@ -165,7 +162,7 @@ function UpdateTask() {
               name="priority"
             />
           </div>
-          <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+          <small style={{ padding: "0px 0px 0px 5px", color: "black" }}>
             {formErrors.priority}
           </small>
           <div className="divs">
@@ -191,10 +188,10 @@ function UpdateTask() {
               selected={startDate}
               name="date"
               onChange={handleDateChange}
-              maxDate={new Date()}
+              minDate={new Date()}
             />
           </div>
-          <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+          <small style={{ padding: "0px 0px 0px 5px", color: "black" }}>
             {formErrors.date}
           </small>
 
@@ -207,7 +204,7 @@ function UpdateTask() {
               onChange={changeTask}
             ></textarea>
           </div>
-          <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+          <small style={{ padding: "0px 0px 0px 5px", color: "black" }}>
             {formErrors.description}
           </small>
 

@@ -1,5 +1,6 @@
 .add-task-form {
   display: flex;
+  flex-direction: column;
   padding: 3.9%;
   background-image: linear-gradient(rgb(252, 44, 44), rgb(44, 44, 255));
 }

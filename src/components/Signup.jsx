@@ -22,6 +22,8 @@ function SignUp() {
   });
   let [formErrors, setformErrors] = useState({});
   let [successMsg, setSuccessMsg] = useState("");
+  let [errorMsg, setErrorMsg] = useState("");
+
   // console.log(successMsg);
 
   //! HOOK TO NAVIGATE
@@ -57,18 +59,22 @@ function SignUp() {
         console.log(data);
         console.log(data.message);
         setSuccessMsg(data.message);
+
         setTimeout(() => {
+          setSuccessMsg("");
           navigateToLogin("/login");
-        }, 1000);
+        }, 2000);
       } catch (error) {
-        console.log(error);
+        setErrorMsg(error.response.data.message);
       }
     }
   };
   //! JSX
   return (
     <section className="signup-form">
-      {successMsg && <p className="popup">{successMsg}</p>}
+      {(successMsg && <p className="popup">{successMsg}</p>) ||
+        (errorMsg && <p className="popuperror">{errorMsg}</p>)}
+
       <div className="formdiv">
         <h2>Create a new account</h2>
         <form>
@@ -94,7 +100,7 @@ function SignUp() {
                   <div>
                     {formErrors[name] && (
                       <small
-                        style={{ padding: "0px 0px 0px 5px", color: "red" }}
+                        style={{ padding: "0px 0px 0px 5px", color: "black" }}
                       >
                         {formErrors[name]}
                       </small>

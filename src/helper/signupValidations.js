@@ -35,6 +35,8 @@ export let validateFormData = (formValues) => {
 
   if (formValues.email === "") {
     error.email = "Email is mandatory";
+  } else if (!nameRegex.test(formValues.email)) {
+    error.email = "Enter an email address";
   } else if (!emailRegex.test(formValues.email)) {
     error.email = "Email doesn't exist";
   }

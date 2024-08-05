@@ -6,34 +6,64 @@ import "../style/tasks.css";
 import { BiSortAlt2 } from "react-icons/bi";
 import { FaFilter } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
-import AddTask from "./AddTask";
 
 function Tasks() {
   //! STATES
   let [tasks, setTasks] = useState([]);
-  let [title, setTitle] = useState("");
+  let [searchValue, setSearchValue] = useState("");
+  let [filter, setFilter] = useState({
+    title: "",
+    status: "",
+    priority: "",
+    duedate: "",
+  });
+  let [sortTask, setSortTask] = useState("title");
 
   let navigateToUpdateTask = useNavigate();
-  //! TO GET INPUT FIELD VALUE
-  let getTitle = ({ target: { value } }) => {
-    setTitle(value);
-  };
+  let token = localStorage.getItem("token");
 
   //! TO GET TASK DATA
-  let getTasks = async (filterTitle = "") => {
+  let getFilteredSortedTask = async () => {
     try {
-      let { data } = await axios.get(`http://localhost:3000/api/gettask`, {
-        params: { title: filterTitle },
+      let queryParams = new URLSearchParams({
+        ...filter,
+        sort: sortTask,
+        fields: "title,duedate,priority,description,status", // Adjust fields as needed
       });
-      setTasks(data);
+      let { data } = await axios.get(
+        `http://localhost:3000/api/getFilteredSortedTask?${queryParams}`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+      setTasks(data.data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
   useEffect(() => {
-    getTasks(title);
-  }, [title]);
+    getFilteredSortedTask();
+  }, [filter, sortTask]);
+
+  // let getTasks = async () => {
+  //   try {
+  //     let { data } = await axios.get(`http://localhost:3000/api/gettasks`, {
+  //       headers: {
+  //         Authorization: `${token}`,
+  //       },
+  //     });
+  //     setTasks(data.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getTasks();
+  // }, []);
 
   //! TO UPDATE AND DELETE TASK
 
@@ -47,10 +77,15 @@ function Tasks() {
       return;
     }
     try {
-      await axios.delete(`http://localhost:3000/api/deletetask/${id}`);
-      getTasks();
+      await axios.delete(`http://localhost:3000/api/deletetask/${id}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      // getTasks();
+      getFilteredSortedTask();
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
   let getStatusClass = (status) => {
@@ -72,14 +107,24 @@ function Tasks() {
         <input
           type="text"
           placeholder="Search"
-          value={title}
-          onChange={getTitle}
+          value={searchValue}
+          onChange={(e) => {
+            setSearchValue(e.target.value);
+          }}
         />
         <button className="nav-btn">
-          <BiSortAlt2 />
+          <BiSortAlt2
+            onClick={() => {
+              setSortTask(sortTask === "title" ? "-title" : "title");
+            }}
+          />
         </button>
         <button className="nav-btn">
-          <FaFilter />
+          <FaFilter
+            onClick={() => {
+              setFilter({ ...filter, title: searchValue });
+            }}
+          />
         </button>
         <NavLink
           to="/addtask"
@@ -104,7 +149,7 @@ function Tasks() {
           </tr>
         </thead>
         <tbody>
-          {tasks.data?.map(
+          {tasks.map(
             ({ title, duedate, priority, status, description, _id }, index) => {
               return (
                 <tr key={_id}>

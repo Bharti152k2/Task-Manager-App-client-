@@ -13,7 +13,7 @@ function Input({ type, placeholder, value, name, onchange, errMsg, option }) {
         required
       />
       {errMsg && (
-        <small style={{ padding: "0px 0px 0px 5px", color: "red" }}>
+        <small style={{ padding: "0px 0px 0px 5px", color: "black" }}>
           {errMsg}
         </small>
       )}

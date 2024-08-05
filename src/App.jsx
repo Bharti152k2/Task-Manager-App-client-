@@ -12,8 +12,8 @@ import Tasks from "./components/Tasks.jsx";
 function App() {
   return (
     <>
-      <Authentication>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Authentication>
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -22,16 +22,16 @@ function App() {
             <Route
               path="/tasks"
               element={
-                // <ProtectedRoute>
-                <Tasks />
-                // </ProtectedRoute>
+                <ProtectedRoute>
+                  <Tasks />
+                </ProtectedRoute>
               }
             />
             <Route path="/addtask" element={<AddTask />} />
-            <Route path="/updatetask/:pid" element={<UpdateTask />} />
+            <Route path="/updatetask/:id" element={<UpdateTask />} />
           </Routes>
-        </BrowserRouter>
-      </Authentication>
+        </Authentication>
+      </BrowserRouter>
     </>
   );
 }

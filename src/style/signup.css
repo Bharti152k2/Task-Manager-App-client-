@@ -1,9 +1,10 @@
 .signup-form {
   background-image: linear-gradient(rgb(250, 44, 44), rgb(44, 44, 255));
-  padding: 80px;
+  padding: 20px;
+  padding-bottom: 40px;
 }
 .formdiv {
-  width: 33%;
+  width: 30%;
   margin: 0px auto;
   border-radius: 15px;
   box-shadow: 1px 1px 5px 1px rgb(26, 15, 15);
@@ -81,9 +82,9 @@ a {
   padding: 17px;
   color: darkgreen;
   width: 450px;
-  margin: 20px auto;
+  margin: 0px auto;
 }
 .popuperror {
   background-color: rgb(240, 113, 113);
-  color: red;
+  color: black;
 }

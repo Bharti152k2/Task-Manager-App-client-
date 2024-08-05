@@ -1,24 +1,47 @@
-import React, { createContext, useState } from "react";
-import axios from "axios";
+import React, { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export let AuthContext = createContext();
+
 function Authentication({ children }) {
-  let [isLoggin, setisLoggin] = useState(null);
-  // console.log(isLoggin);
-  let login = (data) => {
-    setisLoggin(data);
+  let [auth, setAuth] = useState({ token: null, isLoggedIn: false });
+  let navigate = useNavigate();
+
+  let login = (token, expiry) => {
+    localStorage.setItem("token", token);
+    localStorage.setItem("tokenExpiry", expiry);
+    setAuth({ token, isLoggedIn: true });
+    setTimeout(() => {
+      logout();
+    }, expiry - new Date().getTime());
   };
 
-  // let logout = async () => {
-  //   try {
-  //     await axios.delete(`http://localhost:3000/api/logout/${isLoggin._id}`);
-  //     setisLoggin(null);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  let logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("tokenExpiry");
+    setAuth({ token: null, isLoggedIn: false });
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    let tokenExpiry = localStorage.getItem("tokenExpiry");
+
+    if (token && tokenExpiry) {
+      let now = new Date().getTime();
+      if (now < tokenExpiry) {
+        setAuth({ token, isLoggedIn: true });
+        setTimeout(() => {
+          logout();
+        }, tokenExpiry - now);
+      } else {
+        logout();
+      }
+    }
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ isLoggin, login }}>
+    <AuthContext.Provider value={{ auth, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

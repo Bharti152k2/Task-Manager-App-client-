@@ -1,14 +1,14 @@
 export let validateFormData = (formValues) => {
   let error = {};
 
-  //! Category Validations
-  let charRegex = /[a-zA-Z]+([ \-']{0,1}[a-zA-Z]+)*/;
+  //! Title Validations
+  let titleReg = /^[a-zA-Z\s]+$/g;
   if (formValues.title === "") {
-    error.title = "Title should be empty";
+    error.title = "Title should not be empty";
   } else if (formValues.title.length < 4) {
     error.title = "Title should contain atleast 4 characters";
-  } else if (!charRegex.test(formValues.title)) {
-    error.category = "Title should contain only characters";
+  } else if (!titleReg.test(formValues.title)) {
+    error.title = "Title should contain only characters";
   }
 
   //! PRIORITY VALIDATION
@@ -22,9 +22,13 @@ export let validateFormData = (formValues) => {
   }
 
   //! Description Validations
+  let descRegex = /^[a-zA-Z0-9\s.,!?:;'"()\-]+$/;
 
   if (formValues.description === "") {
     error.description = "Description should be filled";
+  } else if (!descRegex.test(formValues.description)) {
+    error.description =
+      "Description can contain alphabets,spaces,specialCharacters,numbers";
   }
 
   return error;
