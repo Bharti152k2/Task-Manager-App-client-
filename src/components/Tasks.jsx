@@ -13,7 +13,7 @@ function Tasks() {
   let [searchValue, setSearchValue] = useState("");
   let [filter, setFilter] = useState({
     title: "",
-    status: "",
+    description: "",
     priority: "",
     duedate: "",
   });
@@ -28,7 +28,7 @@ function Tasks() {
       let queryParams = new URLSearchParams({
         ...filter,
         sort: sortTask,
-        fields: "title,duedate,priority,description,status", // Adjust fields as needed
+        fields: "title,duedate,priority,description,status,sort",
       });
       let { data } = await axios.get(
         `http://localhost:3000/api/getFilteredSortedTask?${queryParams}`,
@@ -151,6 +151,7 @@ function Tasks() {
         <tbody>
           {tasks.map(
             ({ title, duedate, priority, status, description, _id }, index) => {
+              console.log("Status:", status);
               return (
                 <tr key={_id}>
                   <td>{index + 1}</td>
